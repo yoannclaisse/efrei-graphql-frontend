@@ -45,3 +45,26 @@ export async function GetUserWithTodosById(id: number) {
     console.log('ALL USERS WITH TODO:', data)
     return { user: data }
 }
+
+export interface UserCreateInput {
+    username: string;
+    email: string;
+    password: string;
+}
+export async function AddUser(inputCreateUser: UserCreateInput) {
+    const client = createApolloClient();
+    const { data } = await client.mutate({
+        mutation: gql`
+        mutation AddUser($inputCreateUser: UserCreateInput!) {
+          addUser(data: $inputCreateUser) {
+            id
+            username
+            email
+          }
+        }
+      `,
+        variables: { inputCreateUser }
+    });
+    console.log('Added User:', data);
+    return { user: data.addUser };
+}
