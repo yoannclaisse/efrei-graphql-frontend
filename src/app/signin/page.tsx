@@ -21,10 +21,8 @@ const AddUserForm = () => {
     try {
       const { user } = await AddUser(inputCreateUser);
       console.log('User added:', user);
-      // Vous pouvez ajouter une logique supplémentaire ici, comme afficher un message de succès
     } catch (error) {
       console.error('Error adding user:', error);
-      // Gérer l'erreur ici
     }
   };
 
