@@ -44,7 +44,7 @@ const LoginButton = () => {
 
   return (
     <div>
-      <button onClick={handleLogin}>Connextion</button>
+      <button onClick={handleLogin}>Connection button component</button>
     </div>
   );
 };
