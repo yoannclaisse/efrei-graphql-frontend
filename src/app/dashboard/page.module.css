@@ -1,0 +1,102 @@
+.main {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center; */
+  /* padding: 6rem; */
+  min-height: 100vh;
+  /* background: blue; */
+  width: 100%;
+}
+
+.header {
+  width: 100%;
+  /* background: blue; */
+  margin-bottom: 30px;
+}
+
+.newTodo {
+  width: 100%;
+  /* background: blue; */
+  margin-bottom: 30px;
+}
+
+.containerCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  /* background: blue; */
+}
+
+.wrapperCard {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    width: 90%;
+    /* background: red; */
+}
+
+.card {
+    width: 25%;
+    margin: 10px;
+    background: #fee6e3;
+    /* padding: 9px; */
+    height: 250px;
+    border-radius: 9px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.card .todoCardTitle {
+    width: 100%;
+    height: 15%;
+    background: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 9px;
+}
+
+.card .todoCardDescription {
+    width: 100%;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+}
+
+.card .todoCardBottom {
+    width: 100%;
+    height: 25%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+    /* background: blue; */
+}
+
+.card .todoCardBottomComplete {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card .todoCardBottomDelete {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card .todoCardBottomUpdate {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
