@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import LogoutButton from "../component/LogoutButton";
+import LogoutButton from "../components/LogoutButton";
 import { TodoType } from "../lib/user/user.type";
 
 const DashboardPage = () => {
@@ -70,7 +70,7 @@ const DashboardPage = () => {
           <div>
             <h3>{todo.title}</h3>
             <p>{todo.description}</p>
-            <p>Completed: {todo.completed ? 'Yes' : 'No'}</p>
+            <p>Completed: {todo.completed ? "Yes" : "No"}</p>
           </div>
         ))}
       </div>

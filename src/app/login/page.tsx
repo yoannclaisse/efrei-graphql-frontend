@@ -1,9 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
-import LoginButton from "../component/LoginButton";
-import BackToHomeButton from "../component/backToHommeButton";
+import BackToHomeButton from "../components/backToHommeButton";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
