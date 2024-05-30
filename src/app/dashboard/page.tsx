@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import LogoutButton from "../components/LogoutButton";
+import LogoutButton from "../component/LogoutButton";
 import { TodoType } from "../lib/user/user.type";
 
 const DashboardPage = () => {
