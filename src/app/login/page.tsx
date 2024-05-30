@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
+import styles from "./page.module.css";
 import { useRouter } from "next/navigation";
-import BackToHomeButton from "../components/backToHommeButton";
+import BackToHomeButton from "../component/backToHomeButton";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
@@ -43,29 +44,33 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
-      <div>
-        <h1>Login</h1>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        
+    <main className={styles.main}>
+      <div className={styles.container}>
+        <h1 className={styles.h1}>Enter your credentials</h1>
+        <div className={styles.containerInput}>
+          <input
+            className={styles.input}
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <input
+            className={styles.input}
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <div className={styles.containerButton}>
+          <button onClick={handleLogin} className={styles.button}>
+            Connection
+          </button>
+          <BackToHomeButton />
+        </div>
       </div>
-      <div>
-      {/* <LoginButton /> */}
-      <button onClick={handleLogin}>Connection</button>
-    </div>
-      <BackToHomeButton />
-    </div>
+    </main>
   );
 };
 
