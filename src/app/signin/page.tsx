@@ -21,7 +21,7 @@ const AddUserForm = () => {
 
     try {
       const { user } = await AddUser(inputCreateUser);
-      console.log("User added:", user);
+      console.log("USER ADDED:", user);
     } catch (error) {
       console.error("Error adding user:", error);
     }

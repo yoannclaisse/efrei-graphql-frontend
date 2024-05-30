@@ -28,7 +28,7 @@ const LoginPage = () => {
 
       const json = await response.json();
       const data = json.data;
-      console.log(data);
+      console.log("DATA LOGIN PAGE", data);
 
       if (!!data && !!data.getUserId) {
         // push(`/dashboard?username=${username}`);

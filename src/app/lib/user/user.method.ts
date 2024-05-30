@@ -65,6 +65,6 @@ export async function AddUser(inputCreateUser: UserCreateInput) {
       `,
         variables: { inputCreateUser }
     });
-    console.log('Added User:', data);
+    console.log('ADDED USER:', data);
     return { user: data.addUser };
 }

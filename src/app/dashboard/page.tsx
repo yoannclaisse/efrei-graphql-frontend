@@ -9,7 +9,7 @@ const DashboardPage = () => {
   }
 
   const handleLogin = async (userId: Number) => {
-    console.log(userId)
+    console.log("USERID DASHBOARD PAGE :",userId)
     try {
       const response = await fetch("http://localhost:3001/graphql", {
         method: "POST",
@@ -37,7 +37,7 @@ const DashboardPage = () => {
 
       const json = await response.json();
       const data = json.data;
-      console.log(data);
+      console.log("DATA DASHBOARD PAGE :", data);
     } catch (error) {
       console.error("Error:", error);
     }
