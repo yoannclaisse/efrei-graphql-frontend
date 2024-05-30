@@ -1,15 +1,25 @@
 "use client";
 import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import LogoutButton from "../component/LogoutButton";
+import { TodoType } from "../lib/user/user.type";
 
 const DashboardPage = () => {
+  const [username, setUsername] = useState(null); // État local pour stocker le nom d'utilisateur
+  const [todos, setTodos] = useState<TodoType[]>([]);
   const userId = localStorage.getItem("userId");
   const { push } = useRouter();
-  if (!userId) {
-    push(`/`);
-  }
+
+  useEffect(() => {
+    if (!userId) {
+      push(`/`);
+    } else {
+      handleLogin(Number(userId));
+    }
+  }, [userId]);
 
   const handleLogin = async (userId: Number) => {
-    console.log("USERID DASHBOARD PAGE :",userId)
+    console.log("USERID DASHBOARD PAGE :", userId);
     try {
       const response = await fetch("http://localhost:3001/graphql", {
         method: "POST",
@@ -21,29 +31,52 @@ const DashboardPage = () => {
           variables: {
             userId: userId,
           },
-          query: `query userById($userId: Int!) {
-            userById(id: $userId) {
-              id
-              email
-              username
+          query: `query GetUserWithTodosById($userId: Int!) {
+            userWithTodosById(id: $userId) {
+                id
+                username
+                email
                 todos {
-                  id
-                  description
+                    id
+                    title
+                    description
+                    completed
+                    createdAt
+                    updatedAt
                 }
             }
-          }`,
+        }`,
         }),
       });
 
       const json = await response.json();
       const data = json.data;
-      console.log("DATA DASHBOARD PAGE :", data);
+      // console.log("DATA DASHBOARD PAGE :", data.userWithTodosById.todos);
+      // Mise à jour de l'état avec le nom d'utilisateur
+      setUsername(data.userWithTodosById.username);
+      // Met à jour les todos dans l'état local
+      setTodos(data.userWithTodosById.todos);
     } catch (error) {
       console.error("Error:", error);
     }
   };
-  handleLogin(Number(userId))
-  return <div>Dashboard</div>;
+
+  return (
+    <div>
+      <h1>Page de Profil</h1>
+      {username && <h2>Hello {username}</h2>}
+      <div>
+        {todos.map((todo) => (
+          <div>
+            <h3>{todo.title}</h3>
+            <p>{todo.description}</p>
+            <p>Completed: {todo.completed ? 'Yes' : 'No'}</p>
+          </div>
+        ))}
+      </div>
+      <LogoutButton />
+    </div>
+  );
 };
 
 export default DashboardPage;
