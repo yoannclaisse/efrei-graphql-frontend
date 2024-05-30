@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
@@ -21,7 +22,7 @@ const LoginPage = () => {
             password: password,
           },
           query:
-            "query ($username: String!, $password: String!) {\n  userExists(username: $username, password: $password)\n}\n",
+            "query ($username: String!, $password: String!) {\n  getUserId(username: $username, password: $password)\n}\n",
         }),
       });
 
@@ -29,8 +30,10 @@ const LoginPage = () => {
       const data = json.data;
       console.log(data);
 
-      if (data.userExists > 0) {
-        push(`/dashboard`)
+      if (!!data && !!data.getUserId) {
+        // push(`/dashboard?username=${username}`);
+        localStorage.setItem('userId', data.getUserId)
+        push(`/dashboard`);
       } else {
         alert("Identifiants incorrects");
       }
@@ -41,22 +44,31 @@ const LoginPage = () => {
 
   return (
     <div>
-      <h1>Login</h1>
-      <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button onClick={handleLogin}>Login</button>
+      <div>
+        <h1>Login</h1>
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button onClick={handleLogin}>Login</button>
+      </div>
+      <Link href="/">
+        <button>
+          Back to Home
+        </button>
+      </Link>
     </div>
   );
 };
 
 export default LoginPage;
+
+
