@@ -3,6 +3,7 @@ import { useState } from "react";
 import styles from "./page.module.css";
 import { useRouter } from "next/navigation";
 import BackToHomeButton from "../component/backToHomeButton";
+import { sha256 } from "js-sha256";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
@@ -11,19 +12,24 @@ const LoginPage = () => {
 
   const handleLogin = async () => {
     try {
+      // const hashedPassword = sha256(password);
+
       const response = await fetch("http://localhost:3001/graphql", {
         method: "POST",
         headers: {
           "content-type": "application/json",
         },
         body: JSON.stringify({
-          operationName: null,
+          operationName: "LoginUser",
           variables: {
             username: username,
             password: password,
+            // password: hashedPassword,
           },
           query:
-            "query ($username: String!, $password: String!) {\n  getUserId(username: $username, password: $password)\n}\n",
+            `query LoginUser($username: String!, $password: String!) {
+              getUserId(username: $username, password: $password)
+            }`,
         }),
       });
 
@@ -32,7 +38,6 @@ const LoginPage = () => {
       console.log("DATA LOGIN PAGE", data);
 
       if (!!data && !!data.getUserId) {
-        // push(`/dashboard?username=${username}`);
         localStorage.setItem("userId", data.getUserId);
         push(`/dashboard`);
       } else {

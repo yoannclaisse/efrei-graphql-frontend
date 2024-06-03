@@ -6,10 +6,12 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import LogoutButton from "../component/LogoutButton";
 import { TodoType } from "../lib/user/user.type";
-import { styleText } from "util";
+import AddTodoForm from "../component/AddTodoForm";
+import ButtonDeleteTodo from "../component/DeleteTodoButton";
+import ButtonUpdateTodo from "../component/UpdatetodoButton";
 
 const DashboardPage = () => {
-  const [username, setUsername] = useState(null); // État local pour stocker le nom d'utilisateur
+  const [username, setUsername] = useState(null);
   const [todos, setTodos] = useState<TodoType[]>([]);
   const userId = localStorage.getItem("userId");
   const { push } = useRouter();
@@ -55,14 +57,22 @@ const DashboardPage = () => {
 
       const json = await response.json();
       const data = json.data;
-      // console.log("DATA DASHBOARD PAGE :", data.userWithTodosById.todos);
-      // Mise à jour de l'état avec le nom d'utilisateur
       setUsername(data.userWithTodosById.username);
-      // Met à jour les todos dans l'état local
+      console.log("DATA TODO LIST:", data.userWithTodosById.todos)
       setTodos(data.userWithTodosById.todos);
+      
     } catch (error) {
       console.error("Error:", error);
     }
+  };
+
+
+
+  const handleUpdate = (updatedTodo: any) => {
+    console.log(todos)
+    setTodos(
+      todos.map((todo) => (todo.id === updatedTodo.id ? updatedTodo : todo))
+    );
   };
 
   return (
@@ -70,6 +80,8 @@ const DashboardPage = () => {
       <div className={styles.header}>
         <h1>Page de Profil</h1>
         {username && <h2>Hello {username}</h2>}
+        <h1>Add Todo</h1>
+        <AddTodoForm userId={userId} todos={todos} setTodos={setTodos} />
         <LogoutButton />
       </div>
       <div className={styles.newTodo}>todo here</div>
@@ -81,8 +93,8 @@ const DashboardPage = () => {
                 <h3>{todo.title}</h3>
                 <Image
                   src="/images/blocNote.png"
-                  width={50}
-                  height={50}
+                  width={30}
+                  height={30}
                   alt={todo.title}
                   className={styles.todoCardImage}
                 />
@@ -92,8 +104,13 @@ const DashboardPage = () => {
                 <button className={styles.todoCardBottomComplete}>
                   Completed: {todo.completed ? "Yes" : "No"}
                 </button>
-                <button className={styles.todoCardBottomDelete}>Delete</button>
-                <button className={styles.todoCardBottomUpdate}>Update</button>
+                <ButtonDeleteTodo todoId={todo.id} setTodos={setTodos} todos={todos}/>
+                <ButtonUpdateTodo
+                  todoId={todo.id}
+                  initialTitle={todo.title}
+                  initialDescription={todo.description}
+                  onUpdate={handleUpdate}
+                />
               </div>
             </div>
           ))}
