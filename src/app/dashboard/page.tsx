@@ -67,14 +67,6 @@ const DashboardPage = () => {
   };
 
 
-
-  const handleUpdate = (updatedTodo: any) => {
-    console.log(todos)
-    setTodos(
-      todos.map((todo) => (todo.id === updatedTodo.id ? updatedTodo : todo))
-    );
-  };
-
   return (
     <main className={styles.main}>
       <div className={styles.header}>
@@ -109,7 +101,8 @@ const DashboardPage = () => {
                   todoId={todo.id}
                   initialTitle={todo.title}
                   initialDescription={todo.description}
-                  onUpdate={handleUpdate}
+                  setTodos={setTodos}
+                  todos={todos}
                 />
               </div>
             </div>

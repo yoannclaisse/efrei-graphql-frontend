@@ -71,7 +71,7 @@ export const updateTodo = async (todoId: any, newTitle: any, newDescription: any
         const data = json.data;
         console.log("DATA TODO UPDATE", data);
 
-        if (data && data.updateTodo) {
+        if (!!data && !!data.updateTodo) {
             return data.updateTodo;
         } else {
             throw new Error("Erreur lors de la mise à jour de la todo");

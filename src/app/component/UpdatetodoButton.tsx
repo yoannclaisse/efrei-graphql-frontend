@@ -2,7 +2,8 @@
 import React, { useState } from "react";
 import { updateTodo } from "../utils/todoService";
 
-const ButtonUpdateTodo = ({ todoId, initialTitle, initialDescription, onUpdate }: any) => {
+const ButtonUpdateTodo = (props: any) => {
+  const { todoId, initialTitle, initialDescription, onUpdate, setTodos, todos } = props;
   const [title, setTitle] = useState(initialTitle);
   const [description, setDescription] = useState(initialDescription);
   const [isEditing, setIsEditing] = useState(false);
@@ -10,8 +11,8 @@ const ButtonUpdateTodo = ({ todoId, initialTitle, initialDescription, onUpdate }
   const handleUpdate = async () => {
     try {
       const updatedTodo = await updateTodo(todoId, title, description);
-      onUpdate(updatedTodo);
-      setIsEditing(false);
+      await onUpdate(updatedTodo);
+      console.log('updatebutton :', todos)
     } catch (error) {
       console.error("Erreur lors de la mise à jour de la todo", error);
     }
