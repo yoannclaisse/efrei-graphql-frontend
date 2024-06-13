@@ -12,7 +12,6 @@ const LoginPage = () => {
 
   const handleLogin = async () => {
     try {
-      // const hashedPassword = sha256(password);
 
       const response = await fetch("http://localhost:3001/graphql", {
         method: "POST",
