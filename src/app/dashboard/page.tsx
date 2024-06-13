@@ -7,8 +7,8 @@ import { useState, useEffect } from "react";
 import LogoutButton from "../component/LogoutButton";
 import { TodoType } from "../lib/user/user.type";
 import AddTodoForm from "../component/AddTodoForm";
-import ButtonDeleteTodo from "../component/DeleteTodoButton";
-import ButtonUpdateTodo from "../component/UpdatetodoButton";
+import { TodoCard } from "../component/Todocard";
+import TodoUpdateCard from "../component/TodoUpdateCard";
 
 const DashboardPage = () => {
   const [username, setUsername] = useState(null);
@@ -22,7 +22,7 @@ const DashboardPage = () => {
     } else {
       handleLogin(Number(userId));
     }
-  }, [userId]);
+  }, [push, userId]);
 
   const handleLogin = async (userId: Number) => {
     console.log("USERID DASHBOARD PAGE :", userId);
@@ -80,33 +80,18 @@ const DashboardPage = () => {
       <div className={styles.containerCard}>
         <div className={styles.wrapperCard}>
           {todos.map((todo) => (
-            <div className={styles.card}>
-              <div className={styles.todoCardTitle}>
-                <h3>{todo.title}</h3>
-                <Image
-                  src="/images/blocNote.png"
-                  width={30}
-                  height={30}
-                  alt={todo.title}
-                  className={styles.todoCardImage}
-                />
-              </div>
-              <p className={styles.todoCardDescription}>{todo.description}</p>
-              <div className={styles.todoCardBottom}>
-                <button className={styles.todoCardBottomComplete}>
-                  Completed: {todo.completed ? "Yes" : "No"}
-                </button>
-                <ButtonDeleteTodo todoId={todo.id} setTodos={setTodos} todos={todos}/>
-                <ButtonUpdateTodo
-                  todoId={todo.id}
-                  initialTitle={todo.title}
-                  initialDescription={todo.description}
-                  setTodos={setTodos}
-                  todos={todos}
-                />
-              </div>
-            </div>
-          ))}
+            <div className={styles.wrapperCard} key={todo.id}>
+              {todo.isEditing ? (
+              <TodoUpdateCard
+                todo={todo}
+                setTodos={setTodos}
+                todos={todos}
+              />) : (<TodoCard
+                todo={todo}
+                setTodos={setTodos}
+                todos={todos}/>)
+              }
+          </div>))}
         </div>
       </div>
     </main>

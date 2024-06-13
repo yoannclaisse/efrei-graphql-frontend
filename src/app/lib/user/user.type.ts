@@ -5,4 +5,5 @@ export type TodoType = {
     completed: boolean;
     createdAt: number;
     updatedAt: number;
+    isEditing?: boolean;
 };

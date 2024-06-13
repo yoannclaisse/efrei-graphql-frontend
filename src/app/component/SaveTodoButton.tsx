@@ -8,20 +8,17 @@ export type ButtonUpdateTodoProps = {
   todos: TodoType[]
 };
 
-const ButtonUpdateTodo = ({ todo, setTodos,  todos }: ButtonUpdateTodoProps) => {
-  // const { todo, setTodos,  onUpdate } = props;
-  const [title, setTitle] = useState(todo.title);
-  const [description, setDescription] = useState(todo.description);
+const ButtonSaveTodo = ({ todo, setTodos,  todos }: ButtonUpdateTodoProps) => {
+
 
   const handleUpdate = async () => {
     try {
-      const updatedTodo = todo
-      updatedTodo.isEditing = true
-
+      const updatedTodo = await updateTodo(todo.id, todo.title, todo.description);
+      // on desactive le mode edition
+      updatedTodo.isEditing = false
       // on supprime l'ancien todo non mis à jour
-      let newTodos = todos.filter(t => t.id != todo.id)
+      let newTodos = todos.filter(t => t.id != updatedTodo.id)
       console.log("newTodos", newTodos);
-      
 
       // la liste filtrer ne contient pas le todo à mettre à jour
       if (!!newTodos) {
@@ -32,8 +29,6 @@ const ButtonUpdateTodo = ({ todo, setTodos,  todos }: ButtonUpdateTodoProps) => 
         newTodos = [updatedTodo]
         
       }
-      console.log("newTodos", newTodos);
-      
       setTodos(newTodos)
     } catch (error) {
       console.error("Erreur lors de la mise à jour de la todo", error);
@@ -43,10 +38,10 @@ const ButtonUpdateTodo = ({ todo, setTodos,  todos }: ButtonUpdateTodoProps) => 
   return (
     <div>
         <button onClick={() => handleUpdate()}>
-          Edit
+          Save
         </button>
     </div>
   );
 };
 
-export default ButtonUpdateTodo;
+export default ButtonSaveTodo;
