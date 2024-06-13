@@ -1,9 +1,16 @@
 "use client";
+import { gql } from '@apollo/client';
 import { useState } from "react";
 import styles from "./page.module.css";
 import { useRouter } from "next/navigation";
 import BackToHomeButton from "../component/backToHomeButton";
-import { sha256 } from "js-sha256";
+
+
+export const LOGIN_USER_QUERY = gql`
+  query LoginUser($username: String!, $password: String!) {
+    getUserId(username: $username, password: $password)
+  }
+`;
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
