@@ -80,7 +80,7 @@ const DashboardPage = () => {
       <div className={styles.containerCard}>
         <div className={styles.wrapperCard}>
           {todos.map((todo) => (
-            <div className={styles.wrapperCard} key={todo.id}>
+            <div className={styles.card2} key={todo.id}>
               {todo.isEditing ? (
               <TodoUpdateCard
                 todo={todo}

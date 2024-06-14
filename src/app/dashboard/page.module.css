@@ -37,11 +37,24 @@
     /* background: red; */
 }
 
+.card2 {
+  width: 25%;
+  margin: 10px;
+  background: #fee6e3;
+  background:blue;
+  height: 250px;
+  border-radius: 9px;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+}
+
 .card {
-    width: 25%;
-    margin: 10px;
+    width: 100%;
     background: #fee6e3;
-    /* padding: 9px; */
     height: 250px;
     border-radius: 9px;
     overflow: hidden;
