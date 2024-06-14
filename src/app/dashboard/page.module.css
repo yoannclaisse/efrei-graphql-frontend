@@ -113,3 +113,45 @@
     justify-content: center;
     align-items: center;
 }
+
+.header {
+  width: 100%;
+  /* background: blue; */
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.headerContainer {
+  width: 90%;
+  padding: 25px;
+  height: 100%;
+  background: #808080;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom-left-radius: 15px 15px;
+  border-bottom-right-radius: 15px 15px;
+}
+
+.addTodo {
+  width: 100%;
+  /* background: blue; */
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addTodoContainer {
+  width: 90%;
+  padding: 25px;
+  height: 100%;
+  background: #808080;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+  border-radius: 15px;
+}

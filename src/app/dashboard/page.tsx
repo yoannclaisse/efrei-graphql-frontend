@@ -60,7 +60,7 @@ const DashboardPage = () => {
       setUsername(data.userWithTodosById.username);
       console.log("DATA TODO LIST:", data.userWithTodosById.todos)
       setTodos(data.userWithTodosById.todos);
-      
+
     } catch (error) {
       console.error("Error:", error);
     }
@@ -70,11 +70,17 @@ const DashboardPage = () => {
   return (
     <main className={styles.main}>
       <div className={styles.header}>
-        <h1>Page de Profil</h1>
-        {username && <h2>Hello {username}</h2>}
-        <h1>Add Todo</h1>
-        <AddTodoForm userId={userId} todos={todos} setTodos={setTodos} />
-        <LogoutButton />
+        <div className={styles.headerContainer}>
+          {username && <h1>Hello {username}</h1>}
+          <LogoutButton />
+        </div>
+      </div>
+      <div className={styles.addTodo}>
+        <div className={styles.addTodoContainer}>
+          
+          <h2>Add Todo</h2>
+          <AddTodoForm userId={userId} todos={todos} setTodos={setTodos} />
+        </div>
       </div>
       <div className={styles.newTodo}>todo here</div>
       <div className={styles.containerCard}>
@@ -82,16 +88,16 @@ const DashboardPage = () => {
           {todos.map((todo) => (
             <div className={styles.card2} key={todo.id}>
               {todo.isEditing ? (
-              <TodoUpdateCard
-                todo={todo}
-                setTodos={setTodos}
-                todos={todos}
-              />) : (<TodoCard
-                todo={todo}
-                setTodos={setTodos}
-                todos={todos}/>)
+                <TodoUpdateCard
+                  todo={todo}
+                  setTodos={setTodos}
+                  todos={todos}
+                />) : (<TodoCard
+                  todo={todo}
+                  setTodos={setTodos}
+                  todos={todos} />)
               }
-          </div>))}
+            </div>))}
         </div>
       </div>
     </main>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { addTodo } from "../utils/todoService";
 import { TodoType } from "../lib/user/user.type";
+import styles from "./addTodoForm.module.css";
 
 const AddTodoForm = (props: any) => {
   const { userId, todos } = props;
@@ -9,36 +10,40 @@ const AddTodoForm = (props: any) => {
 
   const handleAddTodo = async () => {
     try {
-      alert(`Title: ${title}, Description: ${description}, id: ${userId}`);
+      // alert(`Title: ${title}, Description: ${description}, id: ${userId}`);
       const todoAdded = await addTodo(title, description, Number(userId));
       props.setTodos([...props.todos, todoAdded])
       setTitle("");
       setDescription("");
-    } catch {}
+    } catch { }
   };
 
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
-      <div>
-        <label htmlFor="title">Title:</label>
-        <input
-          type="text"
-          id="title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
+    <form className={styles.formAddTodo} onSubmit={(e) => e.preventDefault()}>
+      <div className={styles.titleDescContainer}>
+        <div className={styles.titleInput}>
+          <label htmlFor="title">Title:</label>
+          <input
+            type="text"
+            id="title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </div>
+        <div className={styles.descInput}>
+          <label htmlFor="description">Description:</label>
+          <textarea
+            id="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </div>
       </div>
-      <div>
-        <label htmlFor="description">Description:</label>
-        <textarea
-          id="description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
+      <div className={styles.addTodoButtonContainer}>
+        <button className={styles.addTodoButton} type="button" onClick={handleAddTodo}>
+          Add Todo
+        </button>
       </div>
-      <button type="button" onClick={handleAddTodo}>
-        Add Todo
-      </button>
     </form>
   );
 };
