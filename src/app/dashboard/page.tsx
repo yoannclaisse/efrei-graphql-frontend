@@ -71,20 +71,20 @@ const DashboardPage = () => {
     <main className={styles.main}>
       <div className={styles.header}>
         <div className={styles.headerContainer}>
-          {username && <h1>Hello {username}</h1>}
+          {username && <h1 className="text-2xl font-bold text-zinc-50">Hello {username} how're you today ?</h1>}
           <LogoutButton />
         </div>
       </div>
       <div className={styles.addTodo}>
         <div className={styles.addTodoContainer}>
           
-          <h2>Add Todo</h2>
+          <h2 className="text-2xl font-bold text-zinc-50">Add Todo</h2>
           <AddTodoForm userId={userId} todos={todos} setTodos={setTodos} />
         </div>
       </div>
-      <div className={styles.newTodo}>todo here</div>
       <div className={styles.containerCard}>
         <div className={styles.wrapperCard}>
+        <div className={`${styles.newTodo} text-2xl font-bold text-zinc-50 mt-5`}>What do you have to do :</div>
           {todos.map((todo) => (
             <div className={styles.card2} key={todo.id}>
               {todo.isEditing ? (

@@ -22,8 +22,9 @@ const AddTodoForm = (props: any) => {
     <form className={styles.formAddTodo} onSubmit={(e) => e.preventDefault()}>
       <div className={styles.titleDescContainer}>
         <div className={styles.titleInput}>
-          <label htmlFor="title">Title:</label>
+          <label className="font-bold text-zinc-50 mt-10" htmlFor="title">Title:</label>
           <input
+            className={styles.input}
             type="text"
             id="title"
             value={title}
@@ -31,8 +32,9 @@ const AddTodoForm = (props: any) => {
           />
         </div>
         <div className={styles.descInput}>
-          <label htmlFor="description">Description:</label>
+          <label className="font-bold text-zinc-50" htmlFor="description">Description:</label>
           <textarea
+          className={styles.input}
             id="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
