@@ -1,0 +1,32 @@
+.logoutButtonContainer {
+    /* background: blu!; */
+    width: 25%;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logoutButton {
+    width: 90%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fee6e3;
+    border: 2px solid #111;
+    border-radius: 8px;
+    color: #111;
+    cursor: pointer;
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    text-decoration: none;
+    font-weight: bold;
+
+}
+
+.logoutButton:hover {
+    color: antiquewhite;
+    background-color: #d4d4d4;
+    font-weight: bold;
+}

@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import styles from './logoutButton.module.css'
 
 const LogoutButton = () => {
   const router = useRouter();
@@ -17,8 +18,8 @@ const LogoutButton = () => {
   };
 
   return (
-    <div>
-      <button onClick={handleLogout}>
+    <div className={styles.logoutButtonContainer}>
+      <button className={styles.logoutButton} onClick={handleLogout}>
         Déconnexion
       </button>
     </div>
