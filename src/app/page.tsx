@@ -6,12 +6,12 @@ export default async function HomePage() {
   return (
     <main className={styles.main}>
       <div className={styles.container}>
-        <h1>💊💊💊💊 Welcome in ToDoLab 🧪🧪🧪🧪</h1>
+        <h1 className="text-4xl font-bold text-zinc-50">💊💊💊💊 Welcome in ToDoLab 🧪🧪🧪🧪</h1>
         <div className={styles.containerButton}>
-          <Link href="/login" className={styles.button}>
+          <Link href="/login" className={`${styles.button} font-bold bg-blue-200`}>
             Connexion
           </Link>
-          <Link href="/signin" className={styles.button}>
+          <Link href="/signin" className={`${styles.button} font-bold bg-green-200`}>
             Création de compte
           </Link>
         </div>

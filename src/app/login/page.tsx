@@ -57,7 +57,7 @@ const LoginPage = () => {
   return (
     <main className={styles.main}>
       <div className={styles.container}>
-        <h1 className={styles.h1}>Enter your credentials</h1>
+        <h1 className={`${styles.h1} text-3xl font-bold text-zinc-50`}>Enter your credentials</h1>
         <div className={styles.containerInput}>
           <input
             className={styles.input}
@@ -75,8 +75,8 @@ const LoginPage = () => {
           />
         </div>
         <div className={styles.containerButton}>
-          <button onClick={handleLogin} className={styles.button}>
-            Connection
+          <button onClick={handleLogin} className={`${styles.button} font-bold bg-blue-200`}>
+            Connexion
           </button>
           <BackToHomeButton />
         </div>
